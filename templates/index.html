@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>トップ</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            <h2>図書管理システム</h2>
+        </header>
+        <article>
+            <div class="side">
+              <a href="{{url_for('user_register')}}">新規登録</a><br>
+              <a href="">ログイン</a>
+            </div> 
+            <div class="content">
+                <p>本webアプリケーションでは、次のようなことができます。</p>
+                <ul>
+                    <li>図書一覧の表示</li>
+                    <li>図書のキーワード検索</li>
+                    <li>図書の貸し出し、返却</li>
+                    <li>図書のレビュー</li>
+                </ul>
+                <p>利用するにはログインが必要です。</p>
+                <a href="">ログイン</a>
+            </div>
+          </article>
+    </body>
+</html>
