@@ -10,8 +10,8 @@
         </header>
         <article>
             <div class="side">
-              <a href="{{url_for('user_register')}}">新規登録</a><br>
-              <a href="">ログイン</a>
+              <a href="{{url_for('user_register_form')}}">新規登録</a><br>
+              <a href="{{url_for('user_login_index')}}">ログイン</a>
             </div> 
             <div class="content">
                 <p>本webアプリケーションでは、次のようなことができます。</p>
@@ -22,7 +22,7 @@
                     <li>図書のレビュー</li>
                 </ul>
                 <p>利用するにはログインが必要です。</p>
-                <a href="">ログイン</a>
+                <a href="{{url_for('user_login_index')}}">ログイン</a>
             </div>
           </article>
     </body>
