@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>ログイン</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            <h2>図書管理システム</h2>
+        </header>
+        {% if error != null %}
+        <p style="color:red">{{error}}</p>
+        {% endif %}
+        {% if msg != null %}
+        <p style="color:blue">{{msg}}</p>
+        {% endif %}
+        <form action="{{url_for('user_login')}}" method="post">
+            名前<br>
+            <input type="text" name="name" value="{{data.name if data is defined else ''}}"><br>
+            パスワード<br>
+            <input type="password" name="password" value="{{data.password if data is defined else ''}}"><br>
+            <button type="submit">ログイン</button>
+        </form>
+        未登録の方はこちら
+        <a href="{{url_for('user_register_form')}}">新規登録</a><br>
+        <a href="../">戻る</a>
+    </body>
+</html>
