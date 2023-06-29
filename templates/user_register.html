@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <title>トップ</title>
+        <title>新規登録</title>
         <meta charset="utf-8">
     </head>
     <body>
         <header>
             <h2>図書管理システム</h2>
         </header>
-        <h2>新規登録</h2>
         {% if error != null %}
         <p style="color:red">{{error}}</p>
         {% endif %}
-        <form action="{{url_for('user_register')}}" method="post">
+        <form action="{{url_for('user_register_exe')}}" method="post">
             名前<br>
-            <input type="text" name="username"><br>
+            <input type="text" name="name"><br>
             パスワード<br>
             <input type="password" name="password"><br>
+            生年月日(yyyymmdd形式の数字6桁)<br>
+            <input type="text" name="birth"><br>
             <button type="submit">登録</button><br>
         </form>
         <a href="../">戻る</a>
