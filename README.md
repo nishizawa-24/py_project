@@ -7,6 +7,11 @@ pythonの最終課題
 <details>
 <summary>進捗</summary>
 
+### 07/03
+* booksテーブルとuesr_bookテーブルのsql文作成
+* ログイン後のトップ画面作成
+* 一覧機能作成開始
+
 ### 06/29
 * usersテーブルのsql文作成
 * 新規登録画面の調整
@@ -83,6 +88,18 @@ CREATE TABLE users (
 |author|VARCHAR(256)|
 |publisher|VARCHAR(256)|
 
+<details>
+<summary>sql文</summary>
+
+CREATE TABLE books (
+  book_id SERIAL PRIMARY KEY,
+  isbn INTEGER,
+  title VARCHAR(256),
+  author VARCHAR(256),
+  publisher VARCHAR(256)
+);
+</details>
+
 ---
 
 #### user_book
@@ -96,6 +113,20 @@ CREATE TABLE users (
 |book_id|INTEGER|
 |borrowed_time|TIMESTAMP|
 |returned_time|TIMESTAMP|
+|review|VARCHAR(256)|
+
+<details>
+<summary>sql文</summary>
+
+CREATE TABLE user_book (
+  user_book_id SERIAL PRIMARY KEY,
+  user_id INTEGER,
+  book_id INTEGER,
+  borrowed_time TIMESTAMP,
+  returned_time TIMESTAMP,
+  review VARCHAR(256)
+);
+</details>
 
 ---
 
