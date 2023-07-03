@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <title>マイページ</title>
+        <title>トップ</title>
         <meta charset="utf-8">
     </head>
     <body>
-        <h2>ログイン成功です。</h2>
+        <header>
+            <h2>図書管理システム</h2>
+        </header>
+        <article>
+            <div class="side">
+              <a href="{{url_for('mypage')}}">トップ</a><br>
+              <a href="{{url_for('show_all_book')}}">一覧</a><br>
+              <a href="{{url_for('mypage')}}">借りている本</a><br>
+              <a href="{{url_for('mypage')}}">返却</a><br>
+              <a href="{{url_for('mypage')}}">借りる</a><br>
+              <a href="{{url_for('mypage')}}">レビュー</a><br>
+              <a href="{{url_for('mypage')}}">ログアウト</a><br>
+            </div> 
+            <div class="content">
+                <p>トップ画面です。</p>
+                <p>一覧では、著書の一覧、キーワード検索ができます。</p>
+                <p>借りている本では、現在借りている本を確認できます。</p>
+                <p>返却では、借りている本を返却します。</p>
+                <p>借りるでは、本を借りることができます。</p>
+                <p>レビューでは、借りている本の感想を投稿します。</p>
+                <p>ログアウト画面でキャンセルした場合は、トップ画面に遷移します。</p>
+            </div>
+          </article>
     </body>
 </html>
