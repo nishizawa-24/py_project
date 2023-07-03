@@ -1,3 +1,4 @@
+# coding: utf-8
 import os, psycopg2, string, random, hashlib
 
 def get_connection():
@@ -60,3 +61,23 @@ def get_hash(password, salt):
     b_salt = bytes(salt, "utf-8")
     hashed_password = hashlib.pbkdf2_hmac("sha256", b_pw, b_salt, 1000).hex()
     return hashed_password
+
+def get_all_books():
+    sql = 'SELECT title, author, publisher FROM books'
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        book_list = []
+        for row in rows:
+            book_list.append(row)        
+    except psycopg2.DatabaseError:
+        count = 0
+    finally:
+        cursor.close()
+        connection.close()    
+    print(book_list)
+    print('aiueo')
+    return book_list
+    print(book_list)
