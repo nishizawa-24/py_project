@@ -1,3 +1,4 @@
+# coding: utf-8
 from flask import Flask, render_template, request, redirect, url_for
 import db
 
@@ -47,9 +48,14 @@ def user_login():
         input_data = {'name':name, 'password':password}
         return render_template('user_login.html', error=error, data=input_data)
     
-@app.route('/my_top', methods=['GET'])
+@app.route('/top', methods=['GET'])
 def mypage():
     return render_template('mypage.html')
 
+@app.route('/list', methods=['GET'])
+def show_all_book():
+    book_list = db.get_all_books()
+    return book_list
+    
 if __name__ == '__main__':
     app.run(debug=True)
