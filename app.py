@@ -55,7 +55,23 @@ def mypage():
 @app.route('/list', methods=['GET'])
 def show_all_book():
     book_list = db.get_all_books()
-    return book_list
+    return render_template('book_list.html', book_list=book_list)
+    
+@app.route('/detail', methods=['POST'])
+def book_detail():
+    book_id = request.form.get('book_id')
+    book = db.get_book(book_id)
+    return render_template('book_detail.html', book=book)
+
+@app.route('/search', methods=['POST'])
+def book_search():
+    keyword = request.form.get('keyword')
+    books = db.get_searched_books(keyword)
+    msg = '図書が見つかりませんでした。'
+    if books == []:
+        return render_template('search_result.html', keyword=keyword, books=books, msg=msg)
+    else:
+        return render_template('search_result.html', keyword=keyword, books=books, msg=None)
     
 if __name__ == '__main__':
     app.run(debug=True)
