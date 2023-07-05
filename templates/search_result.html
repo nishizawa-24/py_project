@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>図書一覧</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            <h2>図書管理システム</h2>
+        </header>
+        <article>
+            <div class="side">
+                <a href="{{url_for('mypage')}}">トップ</a><br>
+                <a href="{{url_for('show_all_book')}}">一覧</a><br>
+                <a href="{{url_for('mypage')}}">借りている本</a><br>
+                <a href="{{url_for('mypage')}}">返却</a><br>
+                <a href="{{url_for('mypage')}}">借りる</a><br>
+                <a href="{{url_for('mypage')}}">レビュー</a><br>
+                <a href="{{url_for('mypage')}}">ログアウト</a><br>
+            </div> 
+            <div class="content">
+                <h2>検索結果</h2>
+                <form action="{{url_for('book_search')}}" method="post">
+                    <input type="text" name="keyword" value={{ keyword }}>
+                    <button type="submit">検索</button>
+                </form>
+                <p>タイトルをクリックすると図書の詳細情報を確認できます。</p>
+                {% if msg == None: %}
+                    <table border="1">
+                        <tr>
+                            <td>タイトル</td>
+                            <td>著者</td>
+                            <td>出版社</td>
+                        </tr>
+                        {% for book in books %}
+                        <tr>
+                            <td>
+                                <form action="{{url_for('book_detail')}}" method="post">
+                                    <input type="hidden" name="book_id" value="{{ book[0] }}">
+                                    <button type="submit">{{ book[2] }}</button>
+                                </form>
+                            </td>
+                            <td>{{ book[3] }}</td>
+                            <td>{{ book[4] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else: %}
+                    <p>{{ msg }}</p>
+                {% endif %}
+                <button type="button" onclick="history.back()">戻る</button>
+            </div>
+        </article>
+    </body>
+</html>
