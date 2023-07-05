@@ -7,10 +7,18 @@ pythonの最終課題
 <details>
 <summary>進捗</summary>
 
+### 07/05
+* 一覧機能完成
+* 部分一致検索作成
+* 図書の詳細情報の表示画面作成
+
 ### 07/03
 * booksテーブルとuesr_bookテーブルのsql文作成
 * ログイン後のトップ画面作成
 * 一覧機能作成開始
+
+<details>
+<summary>6月までの進捗</summary>
 
 ### 06/29
 * usersテーブルのsql文作成
@@ -37,6 +45,8 @@ pythonの最終課題
 ### 06/13
 * リポジトリの作成
 * 画面設計開始(XD)
+
+</details>
 </details>
 
 <details>
