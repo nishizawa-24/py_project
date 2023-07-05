@@ -62,8 +62,9 @@ def get_hash(password, salt):
     hashed_password = hashlib.pbkdf2_hmac("sha256", b_pw, b_salt, 1000).hex()
     return hashed_password
 
+# 全ての図書を取得
 def get_all_books():
-    sql = 'SELECT title, author, publisher FROM books'
+    sql = 'SELECT * FROM books'
     try:
         connection = get_connection()
         cursor = connection.cursor()
@@ -71,13 +72,44 @@ def get_all_books():
         rows = cursor.fetchall()
         book_list = []
         for row in rows:
-            book_list.append(row)        
+            book_list.append(row)
     except psycopg2.DatabaseError:
         count = 0
     finally:
         cursor.close()
         connection.close()    
-    print(book_list)
-    print('aiueo')
     return book_list
-    print(book_list)
+
+# book_idで図書を取得
+def get_book(book_id):
+    sql = 'SELECT * FROM books WHERE book_id = %s'
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql,(book_id,))
+        book = cursor.fetchone()
+    except psycopg2.DatabaseError:
+        count = 0
+    finally:
+        cursor.close()
+        connection.close()    
+    return book
+
+# キーワード検索
+def get_searched_books(keyword):
+    sql = 'SELECT * FROM books WHERE title LIKE %s or author LIKE %s or publisher LIKE %s'
+    keyword = '%' + keyword + '%'
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql,(keyword,keyword,keyword,))
+        rows = cursor.fetchall()
+        book_list = []
+        for row in rows:
+            book_list.append(row)
+    except psycopg2.DatabaseError:
+        count = 0
+    finally:
+        cursor.close()
+        connection.close()    
+    return book_list
