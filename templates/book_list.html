@@ -12,16 +12,15 @@
             <div class="side">
                 <a href="{{url_for('mypage')}}">トップ</a><br>
                 <a href="{{url_for('show_all_book')}}">一覧</a><br>
-                <a href="{{url_for('mypage')}}">借りている本</a><br>
                 <a href="{{url_for('mypage')}}">返却</a><br>
                 <a href="{{url_for('mypage')}}">借りる</a><br>
                 <a href="{{url_for('mypage')}}">レビュー</a><br>
-                <a href="{{url_for('mypage')}}">ログアウト</a><br>
+                <a href="{{url_for('logout')}}">ログアウト</a><br>
             </div> 
             <div class="content">
                 <h2>一覧</h2>
                 <form action="{{url_for('book_search')}}" method="post">
-                    <input type="text" name="keyword">
+                    <input type="text" name="keyword" value="">
                     <button type="submit">検索</button>
                 </form>
                 <p>タイトルをクリックすると図書の詳細情報を確認できます。</p>
