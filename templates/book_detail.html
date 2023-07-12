@@ -11,9 +11,8 @@
         <article>
             <div class="side">
                 <a href="{{url_for('mypage')}}">トップ</a><br>
-                <a href="{{url_for('show_all_book')}}">一覧</a><br>
-                <a href="{{url_for('mypage')}}">返却</a><br>
-                <a href="{{url_for('mypage')}}">借りる</a><br>
+                <a href="{{url_for('show_all_book')}}">図書一覧</a><br>
+                <a href="{{url_for('book_list_borrowed')}}">貸出中の図書</a><br>
                 <a href="{{url_for('mypage')}}">レビュー</a><br>
                 <a href="{{url_for('logout')}}">ログアウト</a><br>
             </div> 
@@ -23,7 +22,17 @@
                 <p>タイトル:{{ book[2]}}</p>
                 <p>著者:{{ book[3]}}</p>
                 <p>出版社:{{ book[4]}}</p>
-                <a href="#">借りる</a><br>
+                {% if return_book == True: %}
+                <form action="#" method="post">
+                    <input type="hidden" name="book_id" value="{{ book[0] }}">
+                    <button type="submit">返す</button>
+                </form>
+                {% else: %}
+                <form action="{{url_for('book_borrow_confirm')}}" method="post">
+                    <input type="hidden" name="book_id" value="{{ book[0] }}">
+                    <button type="submit">借りる</button>
+                </form>
+                {% endif %}
                 <button type="button" onclick="history.back()">戻る</button>
             </div>
         </article>
