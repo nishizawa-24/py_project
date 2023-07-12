@@ -11,19 +11,24 @@
         <article>
             <div class="side">
                 <a href="{{url_for('mypage')}}">トップ</a><br>
-                <a href="{{url_for('show_all_book')}}">一覧</a><br>
-                <a href="{{url_for('mypage')}}">返却</a><br>
-                <a href="{{url_for('mypage')}}">借りる</a><br>
+                <a href="{{url_for('show_all_book')}}">図書一覧</a><br>
+                <a href="{{url_for('book_list_borrowed')}}">貸出中の図書</a><br>
                 <a href="{{url_for('mypage')}}">レビュー</a><br>
                 <a href="{{url_for('logout')}}">ログアウト</a><br>
             </div> 
             <div class="content">
+                {% if return_book != True: %}
                 <h2>一覧</h2>
                 <form action="{{url_for('book_search')}}" method="post">
                     <input type="text" name="keyword" value="">
                     <button type="submit">検索</button>
                 </form>
+                {% else: %}
+                <h2>貸し出し中の図書</h2>
+                {% endif %}
                 <p>タイトルをクリックすると図書の詳細情報を確認できます。</p>
+                <!-- リストは中身が入っているとTrueを、入っていないとFalseを返す -->
+                {% if book_list: %}
                 <table border="1">
                     <tr>
                         <td>タイトル</td>
@@ -35,6 +40,9 @@
                         <td>
                             <form action="{{url_for('book_detail')}}" method="post">
                                 <input type="hidden" name="book_id" value="{{ book[0] }}">
+                                {% if return_book == True: %}
+                                <input type="hidden" name="return_book" value="True">
+                                {% endif %}
                                 <button type="submit">{{ book[2] }}</button>
                             </form>
                         </td>
@@ -43,6 +51,10 @@
                     </tr>
                     {% endfor %}
                 </table>
+                {% else: %}
+                <p>図書が見つかりませんでした。</p>
+                <a href="{{url_for('mypage')}}">トップへ戻る</a><br>
+                {% endif %}
             </div>
         </article>
     </body>
