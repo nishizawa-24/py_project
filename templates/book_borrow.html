@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>図書一覧</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            <h2>図書管理システム</h2>
+        </header>
+        <article>
+            <div class="side">
+                <a href="{{url_for('mypage')}}">トップ</a><br>
+                <a href="{{url_for('show_all_book')}}">図書一覧</a><br>
+                <a href="{{url_for('book_list_borrowed')}}">貸出中の図書</a><br>
+                <a href="{{url_for('mypage')}}">レビュー</a><br>
+                <a href="{{url_for('logout')}}">ログアウト</a><br>
+            </div> 
+            <div class="content">
+                <h2>詳細</h2>
+                <p>isbn番号:{{ book[1]}}</p>
+                <p>タイトル:{{ book[2]}}</p>
+                <p>著者:{{ book[3]}}</p>
+                <p>出版社:{{ book[4]}}</p>
+                {% if flg == 'yes': %}
+                    <p>{{msg}}</p>
+                    <form action="{{url_for('book_borrow')}}" method="post">
+                        <input type="hidden" name="book_id" value="{{ book[0] }}">
+                        <button type="submit">借りる</button><br>
+                    </form>
+                    <button type="button" onclick="history.back()">戻る</button><br>
+                {% elif flg == 'success': %}
+                    <p>{{msg}}</p>
+                {% elif flg == 'no': %}
+                    <p>{{msg}}</p>
+                    <p>貸出冊数の上限に達している可能性があります。</p>
+                {% endif %}
+                <a href="{{url_for('show_all_book')}}">一覧へ戻る</a><br>
+            </div>
+        </article>
+    </body>
+</html>
